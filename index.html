@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<title>Merge Slimes</title>
+<link rel="stylesheet" href="style.css">
+<script src="/sdk.js"></script>
+</head>
+<body>
+<canvas id="c"></canvas>
+
+<div id="panel">
+  <div class="lv">
+    <span class="lvb" id="lvNum">1</span>
+    <div class="lvt"><b id="lvName"></b><div class="xp"><i id="xpFill"></i></div></div>
+  </div>
+  <div class="r"><i class="ic c1">★</i><span class="lbl" id="lblScore">Счёт</span><b class="val" id="score">0</b></div>
+  <div class="r"><i class="ic c2">♛</i><span class="lbl" id="lblBest">Рекорд</span><b class="val" id="best">0</b></div>
+  <div class="r"><i class="ic c3">●</i><span class="lbl" id="lblCoins">Монеты</span><b class="val" id="coins">0</b></div>
+</div>
+
+<div class="side" id="sideL">
+  <button class="hb js-daily" aria-label="daily">🎁</button>
+  <button class="hb js-quests" aria-label="quests">📜<b class="bdg hidden" id="bdgQ"></b></button>
+  <button class="hb js-cases" aria-label="cases">📦<b class="bdg hidden" id="bdgC"></b></button>
+</div>
+<div class="side" id="sideR">
+  <button class="hb js-shop" aria-label="skins">🎨</button>
+  <button class="hb js-ach" aria-label="achievements">🏆</button>
+  <button class="hb js-settings" aria-label="settings">⚙️</button>
+</div>
+
+<div id="bar">
+  <button id="btnBomb" class="tool bomb"><span class="cnt">1</span>💣</button>
+  <button id="btnReroll" class="tool empty"><span class="cnt">0</span>🔄</button>
+  <button id="btnHammer" class="tool empty"><span class="cnt">0</span>🔨</button>
+  <button id="btnEvolve" class="tool empty"><span class="cnt">0</span>✨</button>
+  <button id="btnFreeze" class="tool empty"><span class="cnt">0</span>❄️</button>
+</div>
+<div id="toast"></div>
+
+<div id="menu" class="overlay">
+  <div class="card">
+    <div class="logo">🟣 Merge Slimes</div>
+    <p id="menuText"></p>
+    <button id="btnPlay" class="main big"></button>
+    <div class="row3">
+      <button class="icon js-daily" aria-label="daily">🎁</button>
+      <button class="icon js-quests" aria-label="quests">📜</button>
+      <button class="icon js-cases" aria-label="cases">📦</button>
+      <button class="icon js-shop" aria-label="skins">🎨</button>
+      <button class="icon js-ach" aria-label="achievements">🏆</button>
+      <button class="icon js-settings" aria-label="settings">⚙️</button>
+    </div>
+  </div>
+</div>
+
+<div id="over" class="overlay hidden">
+  <div class="card">
+    <div class="logo" id="overTitle"></div>
+    <div class="final"><span id="overScore">0</span></div>
+    <p id="overBest"></p>
+    <button id="btnKeep" class="alt hidden"></button>
+    <button id="btnRestart" class="main big"></button>
+  </div>
+</div>
+
+<div id="daily" class="overlay modal hidden">
+  <div class="card">
+    <div class="logo" id="dailyTitle"></div>
+    <div id="dailyGrid"></div>
+    <button id="btnClaim" class="main"></button>
+    <button id="btnDailyClose" class="link"></button>
+  </div>
+</div>
+
+<div id="quests" class="overlay modal hidden">
+  <div class="card">
+    <div class="logo" id="questTitle"></div>
+    <div id="qList"></div>
+    <p id="qNote"></p>
+    <button id="btnQuestClose" class="link"></button>
+  </div>
+</div>
+
+<div id="cases" class="overlay modal hidden">
+  <div class="card wide">
+    <div class="logo" id="caseTitle"></div>
+    <div class="coinline" id="caseCount"></div>
+    <div id="reelWrap"><div id="reel"></div><div id="reelMark"></div></div>
+    <div id="caseResult"></div>
+    <button id="btnOpen" class="main big"></button>
+    <button id="btnX2" class="alt hidden"></button>
+    <p class="odds" id="caseOdds"></p>
+    <button id="btnCasesClose" class="link"></button>
+  </div>
+</div>
+
+<div id="settings" class="overlay modal hidden">
+  <div class="card">
+    <div class="logo" id="setTitle"></div>
+    <button id="btnSound" class="wbtn"></button>
+    <button id="btnRestartRun" class="wbtn"></button>
+    <button id="btnReset" class="wbtn danger"></button>
+    <p id="setNote" class="odds"></p>
+    <button id="btnSettingsClose" class="link"></button>
+  </div>
+</div>
+
+<div id="shop" class="overlay modal hidden">
+  <div class="card">
+    <div class="logo" id="shopTitle"></div>
+    <div id="shopTabs">
+      <button class="tab on" data-tab="skins">🎨 Скины</button>
+      <button class="tab" data-tab="boosts">⚡ Бусты</button>
+      <button class="tab" data-tab="upgrades">⬆ Улучшения</button>
+    </div>
+    <div class="coinline" id="shopCoins"></div>
+    <div id="shopList"></div>
+    <button id="btnShopClose" class="link"></button>
+  </div>
+</div>
+
+<div id="ach" class="overlay modal hidden">
+  <div class="card">
+    <div class="logo" id="achTitle"></div>
+    <div id="achList"></div>
+    <button id="btnAchClose" class="link"></button>
+  </div>
+</div>
+
+<script src="game.js"></script>
+</body>
+</html>
